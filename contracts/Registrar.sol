@@ -14,9 +14,9 @@ contract Registrar is RegistrarInterface {
         node = _node;
     }
 
-    function register(bytes32 name, address owner, bytes signature) external {
+    function register(string name, address owner, bytes signature) external {
         address token = SignatureValidator.recover(keccak256(abi.encodePacked(name, owner)), signature);
-        ens.setSubnodeOwner(node, name);
-        emit Registration(name, owner, token);
+        ens.setSubnodeOwner(node, keccak256(name));
+        emit Registration(keccak256(name), owner, token);
     }
 }
