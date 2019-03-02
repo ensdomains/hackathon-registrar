@@ -1,6 +1,7 @@
 pragma solidity ^0.5.0;
 
 import "./RegistrarInterface.sol";
+import "./Libraries/SignatureValidator.sol";
 import "@ensdomains/ens/contracts/ENS.sol";
 
 contract Registrar is RegistrarInterface {
@@ -14,6 +15,6 @@ contract Registrar is RegistrarInterface {
     }
 
     function register(bytes32 name, address owner, bytes signature) external {
-
+        
     }
 }
