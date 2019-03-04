@@ -15,12 +15,16 @@ contract Registrar is RegistrarInterface {
     }
 
     function register(string calldata name, address owner, bytes calldata signature) external {
-        address token = SignatureValidator.recover(hash(name, owner), signature);
-        ens.setSubnodeOwner(node, keccak256(name));
-        emit Registration(keccak256(name), owner, token);
+        address token = SignatureValidator.recover(_hash(name, owner), signature);
+        ens.setSubnodeOwner(node, keccak256(abi.encodePacked(name)), owner);
+        emit Registration(keccak256(abi.encodePacked(name)), owner, token);
     }
 
-    function hash(string memory name, address owner) public returns (bytes32) {
+    function hash(string calldata name, address owner) external pure returns (bytes32) {
+        return _hash(name, owner);
+    }
+
+    function _hash(string memory name, address owner) internal pure returns (bytes32) {
         return keccak256(abi.encodePacked(name, owner));
     }
 }

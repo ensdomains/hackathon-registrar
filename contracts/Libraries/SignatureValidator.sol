@@ -17,6 +17,6 @@ library SignatureValidator {
             s := mload(add(signature, 65))
         }
 
-        return ecrecover(keccak256("\x19Ethereum Signed Message:\n32", hash), v, r, s);
+        return ecrecover(keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", hash)), v, r, s);
     }
 }
