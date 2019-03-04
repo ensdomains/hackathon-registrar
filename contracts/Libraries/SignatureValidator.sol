@@ -6,7 +6,7 @@ library SignatureValidator {
     /// @param hash Hash which was signed.
     /// @param signature ECDSA signature {v}{r}{s}.
     /// @return Returns whether signature is from a specified user.
-    function recover(bytes32 hash, bytes signature) internal pure returns (address) {
+    function recover(bytes32 hash, bytes memory signature) internal pure returns (address) {
         require(signature.length == 65);
 
         uint8 v = uint8(signature[0]);
