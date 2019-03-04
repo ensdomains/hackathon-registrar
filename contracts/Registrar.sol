@@ -14,13 +14,13 @@ contract Registrar is RegistrarInterface {
         node = _node;
     }
 
-    function register(string name, address owner, bytes signature) external {
+    function register(string calldata name, address owner, bytes calldata signature) external {
         address token = SignatureValidator.recover(hash(name, owner), signature);
         ens.setSubnodeOwner(node, keccak256(name));
         emit Registration(keccak256(name), owner, token);
     }
 
-    function hash(string name, address owner) public returns (bytes32) {
+    function hash(string memory name, address owner) public returns (bytes32) {
         return keccak256(abi.encodePacked(name, owner));
     }
 }
