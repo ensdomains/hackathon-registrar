@@ -24,7 +24,7 @@ contract Registrar is RegistrarInterface {
         bytes32 subnode = keccak256(abi.encodePacked(node, label));
 
         // Create the subdomain and assign it to us.
-        ens.setSubnodeOwner(node, label, this);
+        ens.setSubnodeOwner(node, label, address(this));
 
         // Set a resolver
         ens.setResolver(subnode, resolver);
