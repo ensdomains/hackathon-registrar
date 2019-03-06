@@ -27,7 +27,7 @@ contract Registrar is RegistrarInterface {
         ens.setSubnodeOwner(node, label, address(this));
 
         // Set a resolver
-        ens.setResolver(subnode, resolver);
+        ens.setResolver(subnode, address(resolver));
 
         // Set the resolver's addr record to the new owner
         resolver.setAddr(subnode, owner);
