@@ -35,7 +35,7 @@ contract Registrar is RegistrarInterface {
         // Transfer ownership of the subdomain to the new owner.
         ens.setOwner(subnode, owner);
 
-        emit Registration(keccak256(abi.encodePacked(name)), owner, token);
+        emit Registration(name, owner, token);
     }
 
     function hash(string calldata name, address owner) external pure returns (bytes32) {
