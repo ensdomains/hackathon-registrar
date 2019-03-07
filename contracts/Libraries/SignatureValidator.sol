@@ -9,12 +9,12 @@ library SignatureValidator {
     function recover(bytes32 hash, bytes memory signature) internal pure returns (address) {
         require(signature.length == 65);
 
-        uint8 v = uint8(signature[0]);
+        uint8 v = uint8(signature[64]);
         bytes32 r;
         bytes32 s;
         assembly {
-            r := mload(add(signature, 33))
-            s := mload(add(signature, 65))
+            r := mload(add(signature, 32))
+            s := mload(add(signature, 64))
         }
 
         return ecrecover(keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", hash)), v, r, s);
